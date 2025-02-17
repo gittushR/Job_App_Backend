@@ -18,12 +18,14 @@ public class JobRestController {
     @GetMapping("jobPosts")
     public List<JobPost> getAllJobs() {
         return service.getAllJobs();
-
     }
-
     @GetMapping("/jobPost/{postId}")
     public JobPost getJob(@PathVariable int postId) {
         return service.getJob(postId);
+    }
+    @GetMapping("jobPosts/keyword/{keyword}")
+    public List<JobPost> searchByKeyWord(@PathVariable("keyword") String keyword){
+        return service.search(keyword);
     }
 
     @PostMapping("jobPost")
@@ -44,4 +46,8 @@ public class JobRestController {
         return "Deleted";
     }
 
+    @GetMapping("loadData")
+    public void loadInitialData(){
+        service.loadData();
+    }
 }
