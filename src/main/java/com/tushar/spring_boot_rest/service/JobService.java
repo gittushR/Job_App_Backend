@@ -1,23 +1,38 @@
 package com.tushar.spring_boot_rest.service;
 
-import com.tushar.JobApp.model.JobPost;
-import com.tushar.JobApp.repo.JobRepo;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.tushar.spring_boot_rest.model.JobPost;
+import com.tushar.spring_boot_rest.repo.JobRepo;
 
 @Service
 public class JobService {
-
     @Autowired
-    private JobRepo repo;
+    public JobRepo repo;
 
+    // method to return all JobPosts
+    public List<JobPost> getAllJobs() {
+        return repo.getAllJobs();
+    }
 
-    public void addJob(JobPost jobPost){
+    // ***************************************************************************
+    // method to add a jobPost
+    public void addJob(JobPost jobPost) {
         repo.addJob(jobPost);
     }
-    public List<JobPost> getAllJobs(){
-        return repo.getAllJobs();
+
+    public JobPost getJob(int postId) {
+        return repo.getJob(postId);
+    }
+
+    public void updateJob(JobPost jobPost) {
+        repo.updateJob(jobPost);
+    }
+
+    public void deleteJob(int postId) {
+        repo.deleteJob(postId);
     }
 }
